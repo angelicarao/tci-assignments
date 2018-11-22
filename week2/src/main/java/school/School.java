@@ -3,6 +3,7 @@ package school;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.zip.DataFormatException;
 
 /**
  * A class representing a school.
@@ -30,7 +31,9 @@ public class School {
         return courses;
     }
 
-    public void addCourse(Course course) {
+    public void addCourse(Course course) throws DataFormatException {
+        if (course.getStartDate().before(this.openingDate))
+            throw new DataFormatException();
         this.courses.add(course);
     }
 }
