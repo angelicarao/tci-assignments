@@ -1,2 +1,2 @@
-rootProject.name = 'tci'
-
+rootProject.name = 'assignments'
+include 'week1', 'week2'
