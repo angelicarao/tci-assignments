@@ -23,22 +23,28 @@ public class School {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public Date getOpeningDate() {
-        return openingDate;
+        return this.openingDate;
     }
 
     public List<Course> getCourses() {
-        return courses;
+        return this.courses;
     }
 
+    /**
+     * Adds a course to this school.
+     * @param course The course to be added.
+     * @throws DataFormatException Thrown if the course's start date is before the opening date of the school.
+     * @throws DuplicateCourseException Thrown if a course with the given name already exists.
+     */
     public void addCourse(Course course) throws DataFormatException, DuplicateCourseException {
         if (course.getStartDate().before(this.openingDate))
             throw new DataFormatException();
 
-        if (courses.stream().anyMatch(c -> c.getName().equals(course.getName())))
+        if (this.courses.stream().anyMatch(c -> c.getName().equals(course.getName())))
             throw new DuplicateCourseException();
 
         this.courses.add(course);
@@ -50,7 +56,7 @@ public class School {
      * @return Returns the searched course, or <code>null</code>, if none is found.
      */
     public Course getCourseByName(String name) {
-        for (Course course : courses) {
+        for (Course course : this.courses) {
             if (course.getName().equals(name))
                 return course;
         }
@@ -62,7 +68,7 @@ public class School {
      * @return A collection of course names.
      */
     public List<String> getAllCourseNames() {
-        return courses.stream().map(Course::getName).collect(Collectors.toList());
+        return this.courses.stream().map(Course::getName).collect(Collectors.toList());
     }
 
     /**
