@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.List;
 import java.util.zip.DataFormatException;
 
 public class SchoolTest {
@@ -55,5 +56,18 @@ public class SchoolTest {
         Assert.assertEquals(expected.getName(), actual.getName());
         Assert.assertEquals(expected.getStartDate(), actual.getStartDate());
         Assert.assertEquals(expected.getEndDate(), actual.getEndDate());
+    }
+
+    @Test
+    public void getAllCourseNames() throws CourseDateException, DataFormatException, DuplicateCourseException {
+        Course c1 = new Course("testCourse1", new Date(2018,01,01), new Date(2018,05,01));
+        Course c2 = new Course("testCourse2", new Date(2018,01,01), new Date(2018,05,01));
+        school.addCourse(c1);
+        school.addCourse(c2);
+
+        List<String> names = school.getAllCourseNames();
+
+        Assert.assertTrue(names.contains(c1.getName()));
+        Assert.assertTrue(names.contains(c2.getName()));
     }
 }

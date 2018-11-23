@@ -5,6 +5,7 @@ import exceptions.DuplicateCourseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.zip.DataFormatException;
 
 /**
@@ -54,5 +55,13 @@ public class School {
                 return course;
         }
         return null;
+    }
+
+    /**
+     * Gets a list of all the names of courses in the school.
+     * @return A collection of course names.
+     */
+    public List<String> getAllCourseNames() {
+        return courses.stream().map(Course::getName).collect(Collectors.toList());
     }
 }
