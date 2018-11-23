@@ -44,4 +44,16 @@ public class SchoolTest {
         // Should throw DuplicateCourseException
         school.addCourse(c);
     }
+
+    @Test
+    public void getCourseByName() throws CourseDateException, DataFormatException, DuplicateCourseException {
+        Course expected = new Course("testCourse", new Date(2018,01,01), new Date(2018,05,01));
+        school.addCourse(expected);
+
+        Course actual = school.getCourseByName(expected.getName());
+
+        Assert.assertEquals(expected.getName(), actual.getName());
+        Assert.assertEquals(expected.getStartDate(), actual.getStartDate());
+        Assert.assertEquals(expected.getEndDate(), actual.getEndDate());
+    }
 }

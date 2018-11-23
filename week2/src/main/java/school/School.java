@@ -42,4 +42,17 @@ public class School {
 
         this.courses.add(course);
     }
+
+    /**
+     * Gets a course by its name.
+     * @param name The name of the course which should be searched for.
+     * @return Returns the searched course, or <code>null</code>, if none is found.
+     */
+    public Course getCourseByName(String name) {
+        for (Course course : courses) {
+            if (course.getName().equals(name))
+                return course;
+        }
+        return null;
+    }
 }
