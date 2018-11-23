@@ -1,5 +1,7 @@
 package school;
 
+import exceptions.DuplicateCourseException;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,9 +33,13 @@ public class School {
         return courses;
     }
 
-    public void addCourse(Course course) throws DataFormatException {
+    public void addCourse(Course course) throws DataFormatException, DuplicateCourseException {
         if (course.getStartDate().before(this.openingDate))
             throw new DataFormatException();
+
+        if (courses.stream().anyMatch(c -> c.getName().equals(course.getName())))
+            throw new DuplicateCourseException();
+
         this.courses.add(course);
     }
 }
