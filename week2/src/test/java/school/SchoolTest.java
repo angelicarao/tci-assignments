@@ -70,4 +70,18 @@ public class SchoolTest {
         Assert.assertTrue(names.contains(c1.getName()));
         Assert.assertTrue(names.contains(c2.getName()));
     }
+
+    @Test
+    public void getCopyOfAllCourses() throws CourseDateException, DataFormatException, DuplicateCourseException {
+        Course c1 = new Course("testCourse1", new Date(2018,01,01), new Date(2018,05,01));
+        Course c2 = new Course("testCourse2", new Date(2018,01,01), new Date(2018,05,01));
+        school.addCourse(c1);
+        school.addCourse(c2);
+
+        List<Course> actual = this.school.getCopyOfAllCourses();
+
+        Assert.assertEquals(2, actual.size());
+        Assert.assertTrue(actual.contains(c1));
+        Assert.assertTrue(actual.contains(c2));
+    }
 }

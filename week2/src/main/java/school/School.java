@@ -64,4 +64,12 @@ public class School {
     public List<String> getAllCourseNames() {
         return courses.stream().map(Course::getName).collect(Collectors.toList());
     }
+
+    /**
+     * Gets a copy of all courses in the school.
+     * @return A collection of all courses in the school.
+     */
+    public List<Course> getCopyOfAllCourses() {
+        return new ArrayList<>(this.courses);
+    }
 }
