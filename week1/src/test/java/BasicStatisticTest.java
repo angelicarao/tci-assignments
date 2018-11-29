@@ -1,6 +1,7 @@
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -16,9 +17,13 @@ public class BasicStatisticTest {
         };
     }
 
+    @Before
+    public void setUp() {
+        bs = new BasicStatistic();
+    }
+
     @Test
     public void test_addDoubleToData_shouldBeAdded() {
-        bs = new BasicStatistic();
         bs.addDoubleToData(1.11);
 
         Assert.assertEquals(1, bs.numberOfDataItems());
@@ -26,8 +31,6 @@ public class BasicStatisticTest {
 
     @Test
     public void test_clearData() {
-        bs = new BasicStatistic();
-
         bs.addDoubleToData(1.11);
         bs.addDoubleToData(1.11);
 
@@ -38,7 +41,6 @@ public class BasicStatisticTest {
 
     @Test
     public void test_numberOfDataItems() {
-        bs = new BasicStatistic();
         // Should be 0 initially.
         Assert.assertEquals(0, bs.numberOfDataItems());
 
@@ -51,7 +53,6 @@ public class BasicStatisticTest {
 
     @Test
     public void test_sum() {
-        bs = new BasicStatistic();
         Double value = 1.11;
 
         bs.addDoubleToData(value);
@@ -66,8 +67,6 @@ public class BasicStatisticTest {
     @Test
     @Parameters(method = "getValues")
     public void test_highestValue(Double value1, Double value2) throws NoDataItemsException {
-        bs = new BasicStatistic();
-
         bs.addDoubleToData(value1);
         bs.addDoubleToData(value2);
 
@@ -76,8 +75,6 @@ public class BasicStatisticTest {
 
     @Test
     public void test_getMean() throws NoDataItemsException {
-        bs = new BasicStatistic();
-
         bs.addDoubleToData(1.00);
         bs.addDoubleToData(2.00);
 
@@ -88,13 +85,11 @@ public class BasicStatisticTest {
 
     @Test(expected = NoDataItemsException.class)
     public void test_highestValue_NoDataItemsException() throws NoDataItemsException {
-        bs = new BasicStatistic();
         bs.highestValue();
     }
 
     @Test(expected = NoDataItemsException.class)
     public void test_getMean_NoDataItemsException() throws NoDataItemsException {
-        bs = new BasicStatistic();
         bs.getMean();
     }
 }
