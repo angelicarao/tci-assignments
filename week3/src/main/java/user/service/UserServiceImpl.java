@@ -1,3 +1,5 @@
+package user.service;
+
 public class UserServiceImpl {
     private UserDAO userDAO;
     private SecurityService securityService;

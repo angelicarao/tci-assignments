@@ -1,3 +1,5 @@
+package user.service;
+
 import org.junit.Before;
 import org.junit.Test;
 
