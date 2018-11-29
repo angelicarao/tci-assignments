@@ -17,6 +17,13 @@ public class BasicStatisticTest {
         };
     }
 
+    private static final Object[] getMeans() {
+        return new Object[] {
+                new Object[] {1.0, 2.0, 3.0},
+                new Object[] {10.0, 20.0, 30.0}
+        };
+    }
+
     @Before
     public void setUp() {
         bs = new BasicStatistic();
@@ -74,11 +81,13 @@ public class BasicStatisticTest {
     }
 
     @Test
-    public void test_getMean() throws NoDataItemsException {
-        bs.addDoubleToData(1.00);
-        bs.addDoubleToData(2.00);
+    @Parameters(method = "getMeans")
+    public void test_getMean(Double m1, Double m2, Double m3) throws NoDataItemsException {
+        bs.addDoubleToData(m1);
+        bs.addDoubleToData(m2);
+        bs.addDoubleToData(m3);
 
-        Double expectedMean = (1.00 + 2.00) / 2;
+        Double expectedMean = (m1 + m2 + m3) / 3;
 
         Assert.assertEquals(expectedMean, bs.getMean());
     }
