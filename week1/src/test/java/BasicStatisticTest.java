@@ -1,9 +1,20 @@
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(JUnitParamsRunner.class)
 public class BasicStatisticTest {
 
     private BasicStatistic bs;
+
+    private static final Object[] getValues() {
+        return new Object[] {
+                new Object[] {1.0, 2.0},
+                new Object[] {10.0, 20.0}
+        };
+    }
 
     @Test
     public void test_addDoubleToData_shouldBeAdded() {
@@ -53,14 +64,14 @@ public class BasicStatisticTest {
     }
 
     @Test
-    public void test_highestValue() throws NoDataItemsException {
+    @Parameters(method = "getValues")
+    public void test_highestValue(Double value1, Double value2) throws NoDataItemsException {
         bs = new BasicStatistic();
 
-        Double highest = 2.00;
-        bs.addDoubleToData(1.00);
-        bs.addDoubleToData(highest);
+        bs.addDoubleToData(value1);
+        bs.addDoubleToData(value2);
 
-        Assert.assertEquals(highest, bs.highestValue());
+        Assert.assertEquals(value2, bs.highestValue());
     }
 
     @Test
