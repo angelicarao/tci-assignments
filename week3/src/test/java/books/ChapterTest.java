@@ -3,6 +3,9 @@ package books;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class ChapterTest {
 
     @Test(expected = IllegalArgumentException.class)
@@ -18,5 +21,10 @@ public class ChapterTest {
     @Test
     public void chapterImplementsComparable() {
         Assert.assertTrue(new Chapter("c", "1.1") instanceof Comparable);
+    }
+
+    @Test
+    public void chapterOverridesEquals() {
+        Assert.assertTrue(new Chapter("c", "2").equals(new Chapter("c", "3")));
     }
 }

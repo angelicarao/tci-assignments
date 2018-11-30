@@ -18,4 +18,9 @@ public class Chapter implements Comparable {
     public int compareTo(Object o) {
         return 0;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return true;
+    }
 }
