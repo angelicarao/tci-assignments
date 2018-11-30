@@ -23,4 +23,9 @@ public class Chapter implements Comparable {
     public boolean equals(Object o) {
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }

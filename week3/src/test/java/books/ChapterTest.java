@@ -27,4 +27,10 @@ public class ChapterTest {
     public void chapterOverridesEquals() {
         Assert.assertTrue(new Chapter("c", "2").equals(new Chapter("c", "3")));
     }
+
+    @Test
+    public void chapterOverridesHashcode() {
+        Chapter c = new Chapter("a", "2.1");
+        Assert.assertEquals(1, c.hashCode());
+    }
 }
