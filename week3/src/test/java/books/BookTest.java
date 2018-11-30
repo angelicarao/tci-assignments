@@ -8,4 +8,9 @@ public class BookTest {
     public void bookNameIsNotNull() {
         Book book = new Book(null, "Hans");
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void bookNameIsNotEmpty() {
+        Book book = new Book("", "Hans");
+    }
 }

@@ -6,7 +6,7 @@ public class Book {
     private String author;
 
     public Book(String name, String author) {
-        if (name == null)
+        if (name == null || name == "")
             throw new IllegalArgumentException();
     }
 }
