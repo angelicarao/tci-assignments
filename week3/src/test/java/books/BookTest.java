@@ -18,4 +18,9 @@ public class BookTest {
     public void bookAuthorIsNotNull() {
         Book book = new Book("name", null);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void bookAuthorIsNotEmpty() {
+        Book book = new Book("name", "");
+    }
 }
