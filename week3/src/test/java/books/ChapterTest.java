@@ -14,4 +14,9 @@ public class ChapterTest {
     public void chapterNumberHasMaxTwoLevelsOfChapter() {
         Chapter c = new Chapter("chapter", "2.11");
     }
+
+    @Test
+    public void chapterImplementsComparable() {
+        Assert.assertTrue(new Chapter("c", "1.1") instanceof Comparable);
+    }
 }

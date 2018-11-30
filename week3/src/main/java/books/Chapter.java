@@ -1,6 +1,6 @@
 package books;
 
-public class Chapter {
+public class Chapter implements Comparable {
     private String number;
     private String chapterName;
 
@@ -12,5 +12,10 @@ public class Chapter {
 
         this.chapterName = chapterName;
         this.number = number;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
