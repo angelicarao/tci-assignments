@@ -21,4 +21,8 @@ public class Book {
         Chapter newChapter = new Chapter(chapterName, chapterNumber);
         this.chapters.add(newChapter);
     }
+
+    public List<Chapter> getTOC() {
+        return this.chapters;
+    }
 }

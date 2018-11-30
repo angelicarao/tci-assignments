@@ -1,9 +1,14 @@
 package books;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class BookTest {
 
@@ -33,5 +38,13 @@ public class BookTest {
         book.addChapter("name", "2.1");
 
         verify(book).addChapter("name", "2.1");
+    }
+
+    @Test
+    public void getTableOfContents() {
+        Book book = mock(Book.class);
+        when(book.getTOC()).thenReturn(new ArrayList<Chapter>());
+
+        Assert.assertTrue(book.getTOC() instanceof ArrayList);
     }
 }
