@@ -2,6 +2,9 @@ package books;
 
 import org.junit.Test;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 public class BookTest {
 
     @Test(expected = IllegalArgumentException.class)
@@ -22,5 +25,13 @@ public class BookTest {
     @Test(expected = IllegalArgumentException.class)
     public void bookAuthorIsNotEmpty() {
         Book book = new Book("name", "");
+    }
+
+    @Test
+    public void addChapterToBook() {
+        Book book = mock(Book.class);
+        book.addChapter("name", "2.1");
+
+        verify(book).addChapter("name", "2.1");
     }
 }
