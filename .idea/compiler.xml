@@ -8,6 +8,8 @@
       <module name="week2_test" target="1.10" />
       <module name="week3_main" target="1.10" />
       <module name="week3_test" target="1.10" />
+      <module name="week4_main" target="1.8" />
+      <module name="week4_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
