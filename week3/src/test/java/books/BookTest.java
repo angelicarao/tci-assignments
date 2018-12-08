@@ -3,7 +3,8 @@ package books;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.mockito.Mockito.verify;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BookTest {
 
@@ -43,6 +44,6 @@ public class BookTest {
     public void getTableOfContentsContainsChapter() {
         book.addChapter(CHAPTER_NAME, CHAPTER_NR);
 
-        Assert.assertTrue(book.getTOC().contains(new Chapter(CHAPTER_NAME, CHAPTER_NR)));
+        assertThat(book.getTOC().contains(new Chapter(CHAPTER_NAME, CHAPTER_NR)), is(true));
     }
 }
