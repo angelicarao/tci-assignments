@@ -100,5 +100,6 @@ public class BasicStatisticTest {
     @Test(expected = NoDataItemsException.class)
     public void test_getMean_NoDataItemsException() throws NoDataItemsException {
         bs.getMean();
+
     }
 }
