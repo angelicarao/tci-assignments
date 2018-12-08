@@ -3,6 +3,8 @@ package books;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -31,6 +33,6 @@ public class ChapterTest {
     @Test
     public void chapterOverridesHashcode() {
         Chapter c = new Chapter("a", "2.1");
-        Assert.assertEquals(1, c.hashCode());
+        assertThat(c.hashCode(), is(1));
     }
 }
