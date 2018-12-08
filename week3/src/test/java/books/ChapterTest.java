@@ -1,12 +1,9 @@
 package books;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ChapterTest {
 
@@ -21,13 +18,19 @@ public class ChapterTest {
     }
 
     @Test
-    public void chapterImplementsComparable() {
-        Assert.assertTrue(new Chapter("c", "1.1") instanceof Comparable);
+    public void chapterComparesTwoChaptersCorrectly() {
+        Chapter chapterA = new Chapter("c", "1.1");
+        Chapter chapterB = new Chapter("c", "1.1");
+
+        assertThat(chapterA.compareTo(chapterB), is(0));
     }
 
     @Test
-    public void chapterOverridesEquals() {
-        Assert.assertTrue(new Chapter("c", "2").equals(new Chapter("c", "3")));
+    public void chapterOverridesEqualsSucceeds() {
+        Chapter chapterA = new Chapter("c", "2");
+        Chapter chapterB = new Chapter("c", "2");
+
+        assertThat(chapterA, is(chapterB));
     }
 
     @Test
