@@ -61,4 +61,15 @@ public class RaceResultsServiceTest {
 
         verify(clientA).receive(message);
     }
+
+    @Test
+    public void subscribedClientDoesNotReceiveMessagesFromUndesiredCategories() {
+        List<RaceCategory> cat = new ArrayList<>();
+        cat.add(RaceCategory.Horse);
+        raceResults.addSubscriberToCategories(clientA, cat);
+
+        raceResults.send(message, RaceCategory.FormulaOne);
+
+        verify(clientA, never()).receive(message);
+    }
 }
