@@ -81,4 +81,27 @@ public class RaceResultsServiceTest {
 
         verify(logger).logMessage(message.getText(), message.getTime());
     }
+
+    @Test
+    public void subscribedClientReceivesAllSentMessages() {
+        raceResults.addSubscriber(clientA);
+        raceResults.send(message, RaceCategory.All);
+        raceResults.send(message, RaceCategory.All);
+        raceResults.send(message, RaceCategory.All);
+
+        verify(clientA, times(3)).receive(message);
+    }
+
+    @Test
+    public void subscribedClientsReceiveAllSentMessages() {
+        raceResults.addSubscriber(clientA);
+        raceResults.addSubscriber(clientB);
+
+        raceResults.send(message, RaceCategory.All);
+        raceResults.send(message, RaceCategory.All);
+        raceResults.send(message, RaceCategory.All);
+
+        verify(clientA, times(3)).receive(message);
+        verify(clientB, times(3)).receive(message);
+    }
 }
