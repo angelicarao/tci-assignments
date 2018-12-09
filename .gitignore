@@ -1,8 +1,7 @@
 # Gradle
 .gradle
-/build
-.idea/gradle.xml
-.idea/libraries
+build/
+
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -22,11 +21,8 @@ gradle-app.setting
 *.class
 
 # User-specific IDE settings:
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/dictionaries
-.idea/vcs.xml
-.idea/jsLibraryMappings.xml
+*.iml
+.idea/
 
 # IntelliJ out folder
 /out/
