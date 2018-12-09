@@ -26,8 +26,13 @@ public class RaceResultsService {
         }
     }
 
-    public void removeSubscriber(Client client) {
-        clients.remove(client);
+    public void removeSubscriber(Client client) throws NotSubscribedException {
+        if (clients.get(client) != null) {
+            clients.remove(client);
+        } else {
+            throw new NotSubscribedException();
+        }
+
     }
 
     public void addSubscriberToCategories(Client client, List<RaceCategory> categories) {

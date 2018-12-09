@@ -46,7 +46,7 @@ public class RaceResultsServiceTest {
     }
 
     @Test
-    public void unsubscribedClientShouldNotReceiveMessages() {
+    public void unsubscribedClientShouldNotReceiveMessages() throws NotSubscribedException {
         raceResults.addSubscriber(clientA);
         raceResults.removeSubscriber(clientA);
         raceResults.send(message, RaceCategory.All);
@@ -103,5 +103,10 @@ public class RaceResultsServiceTest {
 
         verify(clientA, times(3)).receive(message);
         verify(clientB, times(3)).receive(message);
+    }
+
+    @Test(expected = NotSubscribedException.class)
+    public void notSubscribedClientTryingToUnsubscribedShouldThrowException() throws NotSubscribedException {
+        raceResults.removeSubscriber(clientA);
     }
 }
