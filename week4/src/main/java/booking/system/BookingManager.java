@@ -2,13 +2,15 @@ package booking.system;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class BookingManager {
-    private List<Booking> bookings;
+    private Set<Booking> bookings;
 
     public BookingManager() {
-        this.bookings = new ArrayList<>();
+        this.bookings = new HashSet<>();
     }
 
     /**
@@ -24,7 +26,7 @@ public class BookingManager {
      * Gets the list of all bookings for today.
      * @return
      */
-    public List<Booking> getBookings() {
+    public Set<Booking> getBookings() {
         return this.bookings;
     }
 }

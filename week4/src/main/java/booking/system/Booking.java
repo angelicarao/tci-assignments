@@ -1,6 +1,7 @@
 package booking.system;
 
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class Booking {
     private LocalTime to;
@@ -22,4 +23,10 @@ public class Booking {
                 : booking.from != null) return false;
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(from, to);
+    }
+
 }
