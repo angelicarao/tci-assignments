@@ -9,7 +9,8 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 public class RaceResultsServiceTest {
-    private RaceResultsService raceResults = new RaceResultsService();
+    private Logger logger = mock(Logger.class);
+    private RaceResultsService raceResults = new RaceResultsService(logger);
     private Message message = mock(Message.class);
     private Client clientA = mock(Client.class, "clientA");
     private Client clientB = mock(Client.class, "clientB");
@@ -71,5 +72,13 @@ public class RaceResultsServiceTest {
         raceResults.send(message, RaceCategory.FormulaOne);
 
         verify(clientA, never()).receive(message);
+    }
+
+    @Test
+    public void sentMessageTextAndTimeAreLogged() {
+        raceResults.addSubscriber(clientA);
+        raceResults.send(message, RaceCategory.All);
+
+        verify(logger).logMessage(message.getText(), message.getTime());
     }
 }

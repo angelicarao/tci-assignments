@@ -4,16 +4,28 @@ import java.util.*;
 
 public class RaceResultsService {
     private Map<Client, List<RaceCategory>> clients = new HashMap<>();
+    private Logger logger;
+
+    public RaceResultsService(Logger logger) {
+        this.logger = logger;
+    }
 
     public void addSubscriber(Client client) {
-        clients.put(client, new ArrayList<>());
+        List<RaceCategory> defaultAll = new ArrayList<>();
+        defaultAll.add(RaceCategory.All);
+
+        clients.put(client, defaultAll);
     }
+
     public void send(Message message, RaceCategory toCategory) {
         for (Client client : clients.keySet()) {
-            if(clients.get(client).contains(toCategory) || clients.get(client).contains(RaceCategory.All))
+            if (clients.get(client).contains(toCategory) || clients.get(client).contains(RaceCategory.All)) {
                 client.receive(message);
+                logger.logMessage(message.getText(), message.getTime());
+            }
         }
     }
+
     public void removeSubscriber(Client client) {
         clients.remove(client);
     }
